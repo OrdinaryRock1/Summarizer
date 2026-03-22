@@ -60,7 +60,11 @@ def api_sumarizovat():
         response.headers.add("Access-Control-Allow-Methods", "POST")
         return response
 
-    data = request.get_json()
+    
+    data = request.get_json(force=True, silent=True)
+    
+    if not data:
+        return jsonify({"error": "Server nerozpoznal odeslaná data."}), 400
     url = data.get('url')
 
     if not url:
