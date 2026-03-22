@@ -1,13 +1,21 @@
+import os
 from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
 from youtube_transcript_api import YouTubeTranscriptApi
 import google.generativeai as genai
 import re
+from dotenv import load_dotenv
 
+load_dotenv()
 app = Flask(__name__)
 CORS(app) 
 
-genai.configure(api_key="AIzaSyDaOrLHDDkQA-v8GIry3PMkTX8T6rbfksY")
+api = os.environ.get("GEMINI_API_KEY")
+
+if not api:
+    raise ValueError("Chybí API klíč! Nastavte proměnnou GEMINI_API_KEY.")
+
+genai.configure(api_key=api)
 model = genai.GenerativeModel('gemini-2.5-flash')
 
 def ziskej_text_videa(video_url):
