@@ -7,11 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     
     <style>
-        /* Základní reset a editorial barvy */
+ 
         :root {
-            --bg-color: #Faf9f6; /* Barva novinového papíru / off-white */
+            --bg-color: #Faf9f6; 
             --text-color: #1a1a1a;
-            --accent-color: #8b0000; /* Tmavě červený akcent pro detaily */
+            --accent-color: #8b0000; 
             --border-color: #e0ddcf;
         }
 
@@ -201,6 +201,7 @@
             headers: {
                 'Content-Type': 'application/json'
             },
+            body: JSON.stringify({ url: urlInput })
         });
 
         const data = await response.json();
